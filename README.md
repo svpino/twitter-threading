@@ -11,7 +11,7 @@ The principle is simple:
 1. I write my tweet in a .YAML file.
 2. I run my script specifying when I want it posted.
 3. I go to sleep as a normal human being, not obsessed with this stuff.
-4.The script does its job and posts the thread.
+4. The script does its job and posts the thread.
 
 I also wanted to make sure I added support for images in my tweets, and attachments (links to other tweets.) 
 
