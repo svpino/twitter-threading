@@ -18,8 +18,6 @@ API_KEY_SECRET = os.environ["API_KEY_SECRET"]
 ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
 ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
 
-USER = os.environ["USER"]
-
 
 def authenticate():
     auth = tweepy.OAuthHandler(API_KEY, API_KEY_SECRET)

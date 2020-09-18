@@ -1,5 +1,6 @@
 .venv
 .vscode
 .env
+.dev-env
 
 threads
