@@ -1,0 +1,3 @@
+PyYAML
+tweepy
+python-dotenv

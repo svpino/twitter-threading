@@ -1,8 +1,12 @@
 thread:
+  target: 2020-09-17 21:13
+  tweets:
     - text: |
         This is the content of the first tweet.
         And here is a second line.
+        
         This tweet contains an image.
+        🧵👇
       media: hermes.jpg
     - text: |
         This is another tweet on the same thread.
