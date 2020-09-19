@@ -7,6 +7,8 @@ import sched
 import time
 import datetime
 import argparse
+from apscheduler.schedulers.background import BackgroundScheduler # importing APScheduler Library
+from airtable import Airtable # importing Airtable library
 
 from dotenv import load_dotenv
 
@@ -66,6 +68,32 @@ def when_format(arg_value, pat=re.compile(r"(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{
 
     return arg_value
 
+''' Start of PR '''
+
+def routine_post_from_airtable():
+    '''
+    This function will take the top entry in an airtable base and post it on Twitter
+    We will then configure the Tweepy library to post it every day at a certain time
+    '''
+    airtable = Airtable("base_key", "base_name", api_key="API_KEY_SECRET") #authenticate Airtable
+    tweet_content = airtable.get_all(view='new', max_records=1) # get tweet from 'new' view, which are tweets that haven't been posted yet
+    main_content = tweet_content['fields']['main'] # get params
+    hashtags = tweet_content['fields']['hashtags'] # get params
+    hyperlink = tweet_content['fields']['link'] # get params
+    
+    api = authenticate() # authenticate Tweepy
+    api.update_status(main_content + "\n \n" + hashtags + "\n \n " + hyperlink) # post Tweet
+
+#setting APScheduler timezone
+scheduler = BackgroundScheduler({'apscheduler.timezone': 'UTC'})
+
+#configuring the APScheduler to send out tweets everyday at a certain time (at UTC)
+scheduler.add_job(routine_post_from_airtable, "cron", day="*", hour=12, minute=0) 
+
+scheduler.start() #start the scheduler
+atexit.register(lambda: scheduler.shutdown()) #shut the scheduler down when exiting the app
+
+''' End of PR '''
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
