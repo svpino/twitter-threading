@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="author" content="Vladimir Haltakov" />
+        <meta name="title" content="Twitter Threading Editor" />
+        <meta name="description" content="Simple UI for writing threads in YAML format ." />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- Social media tags -->
+        <meta property="og:title" content="Twitter Threading Editor" />
+        <meta property="og:description" content="Simple UI for writing threads in YAML format" />
+        <meta property="og:image" content="" />
+        <meta property="og:url" content="https://twitter-threading-editor.netlify.app/" />
+        <meta property="og:site_name" content="Twitter Threading Editor" />
+        <meta name="twitter:site" content="@haltakov" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image:alt" content="Simple UI for writing threads in YAML format " />
+
+        <title>Twitter Threading Editor</title>
+
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="lg:container lg:mx-auto px-3">
+            <h1 class="text-3xl text-center m-5">Twitter Threading Editor</h1>
+
+            <div id="text-container"></div>
+
+            <div class="flex justify-center">
+                <button
+                    id="download-thread-button"
+                    class="p-2 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold block mx-5"
+                >
+                    Download Thread as YAML
+                </button>
+
+                <button
+                    id="new-tweet-button"
+                    class="p-2 rounded border-2 border-blue-500 bg-transparent text-blue-500 hover:bg-blue-700 hover:text-white font-bold block mx-5"
+                >
+                    + Add Tweet
+                </button>
+            </div>
+            <script defer src="static/js/main.js"></script>
+        </div>
+    </body>
+</html>
