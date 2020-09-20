@@ -31,6 +31,9 @@ def load(filename):
 
     return thread["thread"]
 
+def upload_media(api, filename):
+    res = api.media_upload(filename)
+    return res.media_id
 
 def post(api, thread):
     status = None
@@ -43,7 +46,13 @@ def post(api, thread):
         if "attachment" in tweet:
             status = api.update_status(**args, attachment_url=tweet["attachment"])
         elif "media" in tweet:
-            status = api.update_with_media(**args, filename=tweet["media"])
+            media_ids = []
+            if type(tweet["media"]) is list:
+                for filename in tweet["media"]:
+                    media_ids.append(upload_media(api, filename))
+            else:
+                media_ids.append(upload_media(api, tweet["media"]))
+            status = api.update_status(**args, media_ids=media_ids)
         else:
             status = api.update_status(**args)
 

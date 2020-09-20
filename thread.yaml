@@ -6,9 +6,11 @@ thread:
         
         This tweet contains an image.
         🧵👇
-      media: hermes.jpg
+      media:
+        - hermes.jpg
+        - sunset.jpg
     - text: |
-        This is another tweet on the same thread.
+        @svpino Your twitter-threading script can now supprt multiple images in a tweet. Can I create a PR for this?
     - text: 
         And this is the final tweet that include another attached tweet.
       attachment: https://twitter.com/svpino/status/1302107301424369664?s=20
