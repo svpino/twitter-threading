@@ -8,7 +8,13 @@ function addTweet() {
     // Add handler for input changes
     tweetTextarea.addEventListener("input", (event) => {
         const tweetSizeSpan = event.target.parentNode.getElementsByTagName("span")[0];
-        const tweetSize = event.target.value.length;
+
+        // Use this regex to match emojis
+        const emojiRegex = /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g;
+        const emojiCount = (event.target.value.match(emojiRegex) || []).length;
+
+        // Count value with all emojis removed, then add the emoji count multiplied by 2
+        const tweetSize = event.target.value.replace(emojiRegex, '').length + (emojiCount * 2);
 
         // Change the color of the tweet size counter
         tweetSizeSpan.classList.remove("text-black", "text-orange-500", "text-red-700");
@@ -78,7 +84,7 @@ function downloadThreadAsYaml() {
 
     // Populate all tweets
     [...tweets].forEach((tweet) => {
-        const tweetContent = tweet.value.replaceAll("\n", "\n        ");
+        const tweetContent = tweet.value.replace(/\n/g, "\n        ");
         yamlContent += "    - text: |\n        ";
         yamlContent += tweetContent + "\n";
     });
